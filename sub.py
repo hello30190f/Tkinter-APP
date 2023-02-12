@@ -34,7 +34,10 @@ def TextEditer(root:tk.CTk):
 
     MainFrame = tk.CTkFrame(tabview.tab("Text write"))
     text = tk.CTkTextbox(MainFrame,height=200,width=400)
+    # text = tk.CTkTextbox(MainFrame)
+    # text.grid(row=0,column=0,sticky=tk.S+tk.E+tk.W)
     text.grid(row=0,column=0)
+    # MainFrame.pack(padx=2,pady=2,fill=tk.BOTH)
     MainFrame.pack(padx=2,pady=2)
 
     FileFrame = tk.CTkFrame(tabview.tab("File"))
@@ -62,9 +65,11 @@ def TextEditer(root:tk.CTk):
         import os
         from tkinter import filedialog
         file = filedialog.asksaveasfile("wt")
-        for line in text.get("1.0",tk.END):
-            file.write(line)
-        
+        try:
+            for line in text.get("1.0",tk.END):
+                file.write(line)
+        except:
+            pass
 
     SaveButton.bind("<1>",_saveFuncNew)
     SaveButton.pack(padx=10,pady=10)
@@ -74,7 +79,7 @@ def TextEditer(root:tk.CTk):
     def _OpenFile(self):
         from tkinter import filedialog
         import os
-        files = filedialog.askopenfiles("rt")
+        files = filedialog.askopenfiles("rt",filetypes=["all files","text .txt"])
         LineIndex = 1.0
         for file in files:
             text.insert(str(LineIndex),file.read())
