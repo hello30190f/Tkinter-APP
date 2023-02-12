@@ -47,7 +47,7 @@ def _configRead():
         Targetconf.append(False)
     return Targetconf
 
-def _configWriteAndRead():
+def _configInitWriteAndRead():
     import os
     isThereConfigFile = True
     items = os.listdir("./")
@@ -69,7 +69,7 @@ def _configWriteAndRead():
     return returnedValue
 
 def videoEditWindow(root:tk.CTk):
-    settinglist = _configWriteAndRead()
+    settinglist = _configInitWriteAndRead()
     windowSettingIntegrated = settinglist[0]
 
     if(windowSettingIntegrated):

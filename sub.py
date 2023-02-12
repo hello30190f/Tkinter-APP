@@ -30,15 +30,15 @@ def TextEditer(root:tk.CTk):
     tabview = tk.CTkTabview(topWin)
     tabview.pack(padx=10,pady=10)
     tabview.add("Text write")
-    tabview.add("Save as...")
+    tabview.add("File")
 
     MainFrame = tk.CTkFrame(tabview.tab("Text write"))
     text = tk.CTkTextbox(MainFrame,height=200,width=400)
     text.grid(row=0,column=0)
     MainFrame.pack(padx=2,pady=2)
 
-    SaveFrame = tk.CTkFrame(tabview.tab("Save as..."))
-    SaveButton = tk.CTkButton(SaveFrame,text="Save as...")
+    FileFrame = tk.CTkFrame(tabview.tab("File"))
+    SaveButton = tk.CTkButton(FileFrame,text="Save as...")
     def _saveFuncOld(self):
         import os
         from tkinter import filedialog
@@ -67,8 +67,21 @@ def TextEditer(root:tk.CTk):
         
 
     SaveButton.bind("<1>",_saveFuncNew)
-    SaveButton.pack()
-    SaveFrame.pack()
+    SaveButton.pack(padx=10,pady=10)
+
+    OpenFile = tk.CTkButton(FileFrame,text="Open file...")
+
+    def _OpenFile(self):
+        from tkinter import filedialog
+        import os
+        files = filedialog.askopenfiles("rt")
+        LineIndex = 1.0
+        for file in files:
+            text.insert(str(LineIndex),file.read())
+        pass
+    OpenFile.bind("<1>",_OpenFile)
+    OpenFile.pack(padx=10,pady=10)
+    FileFrame.pack()
 
     topWin.mainloop()
 
