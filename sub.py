@@ -23,7 +23,7 @@ def menu(root:tk.CTk):
     menuFrame.pack(padx=20,pady=20,ipadx=20,ipady=20)
 
 
-def TextEditer(root:tk.CTk ):
+def TextEditer(root:tk.CTk):
     topWin = tk.CTkToplevel(root)
     topWin.title("Text writer")
 
@@ -35,11 +35,11 @@ def TextEditer(root:tk.CTk ):
     MainFrame = tk.CTkFrame(tabview.tab("Text write"))
     text = tk.CTkTextbox(MainFrame,height=200,width=400)
     text.grid(row=0,column=0)
-    MainFrame.pack(padx=2,pady=2,sticky=tk.W+tk.S)
+    MainFrame.pack(padx=2,pady=2)
 
     SaveFrame = tk.CTkFrame(tabview.tab("Save as..."))
     SaveButton = tk.CTkButton(SaveFrame,text="Save as...")
-    def saveFunc(self):
+    def _saveFuncOld(self):
         import os
         from tkinter import filedialog
         path = filedialog.askdirectory(initialdir="./")
@@ -58,8 +58,15 @@ def TextEditer(root:tk.CTk ):
                 for line in text.get("1.0",tk.END):
                     texts.write(line)
 
+    def _saveFuncNew(self):
+        import os
+        from tkinter import filedialog
+        file = filedialog.asksaveasfile("wt")
+        for line in text.get("1.0",tk.END):
+            file.write(line)
+        
 
-    SaveButton.bind("<1>",saveFunc)
+    SaveButton.bind("<1>",_saveFuncNew)
     SaveButton.pack()
     SaveFrame.pack()
 
