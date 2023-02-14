@@ -5,6 +5,8 @@ import vlc
 import cv2
 
 
+_UpdateInterval = 200 # ms
+
 class videoPlayer:
     # super()
 
@@ -18,9 +20,14 @@ class videoPlayer:
         return mediaPlayer,media
 
     def _playPosition(self,vlcIns,position:float):
-        vlcIns.pause()
-        vlcIns.set_position(position)
-        vlcIns.play()
+        if(vlcIns.get_state() == vlc.State.Paused):
+            vlcIns.set_position(position)
+        else:
+            vlcIns.pause()
+            vlcIns.set_position(position)
+            vlcIns.play()
+
+
 
     def _SelectNextVideo(self,vlcIns):
         posi = vlcIns.get_position
@@ -59,8 +66,8 @@ class videoPlayer:
             CurrntMin = math.floor(CurrntSecM/60)
             videoTime = WholeVideoTime + " / " + str(CurrntMin) + ":" + f"{CurrntSec:02}"
             timeStr.set(videoTime)
-            controlFrame.after(100,lambda :_updateTimeLabelAndSliderPosition(controlFrame,slideBar,vlcInstance,videoPlayPosition,mediaObj))
-        controlFrame.after(100,lambda :_updateTimeLabelAndSliderPosition(controlFrame,slideBar,vlcInstance,videoPlayPosition,mediaObj))
+            controlFrame.after(_UpdateInterval,lambda :_updateTimeLabelAndSliderPosition(controlFrame,slideBar,vlcInstance,videoPlayPosition,mediaObj))
+        controlFrame.after(_UpdateInterval,lambda :_updateTimeLabelAndSliderPosition(controlFrame,slideBar,vlcInstance,videoPlayPosition,mediaObj))
         slideBar = tk.CTkSlider(controlFrame,width=100,height=10,from_=0,to=1)
         slideBar.set(0)
         slideBar.bind("<B1-Motion>",lambda test:self._playPosition(vlcInstance,slideBar.get()))
@@ -78,6 +85,7 @@ class videoPlayer:
         pass
 
     def _PlayerInstanceDelete(self,vlcIns,windowins:tk.CTkToplevel):
+        vlcIns.pause()
         windowins.destroy()
         vlcIns.stop()
 
@@ -92,3 +100,20 @@ class videoPlayer:
         playerWindow.bind("<Configure>",lambda tete:self._resizeEvent([playerWindow,videoFrame,vlcIns]))
         playerWindow.mainloop()
 
+
+
+if __name__ == "__main__":
+    res = "500x500"
+    window_name = "Dev instance"
+    root = tk.CTk()
+    root.geometry(res)
+    root.title(window_name)
+
+    LaunchLabel = tk.CTkFrame(root)
+    LaunchLabel.pack(pady=10,padx=10,anchor=tk.W)
+    LaunchButton = tk.CTkButton(LaunchLabel,text="Launch player")
+    playerIns = videoPlayer()
+    LaunchButton.bind("<1>",lambda test:playerIns.MainPlayer(root))
+    LaunchButton.grid(padx=10,pady=10,row=0,column=0)
+
+    root.mainloop()
