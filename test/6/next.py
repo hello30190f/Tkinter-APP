@@ -118,23 +118,37 @@ def _CreateTriangle(root:tk.CTk,canvas:tk.CTkCanvas,eventInfo,buttonState):
             Tri = tag
             canvas.create_polygon(TirPosiList[0],TirPosiList[1],TirPosiList[2],TirPosiList[3],x,y,fill=fillcolor,tags=tag,outline="",width=0)
 
+isDialogThere = False
+chosenColor = "White"
+
+def _chooseColor(mode):
+    global isDialogThere,fillcolor,chosenColor
+    from tkinter import colorchooser
+    if(mode != "rootClick"):
+        if(isDialogThere == False):
+            isDialogThere = True
+            color = colorchooser.askcolor()
+            isDialogThere = False
+            chosenColor = color[1]
         
 
 
-
-
-
 iscontrolpanelExist = False
+isCrateThingCalled = False
 
 def _changeColor(color:str):
     if(color != "New color"):
         global fillcolor
         fillcolor = color
+    else:
+        global chosenColor
+        fillcolor = chosenColor
+        _chooseColor("rootClick")
 
 CretateMode = "Line"
 
 def _CreateThing(root:tk.CTk,canvas:tk.CTkCanvas,eventInfo,ButtonState):
-    global CretateMode
+    global CretateMode,isCrateThingCalled
     modeList = ["Line","Rectangle","Triangle","delete"]
     # funcList = [_LineDraw(root,canvas,eventInfo,ButtonState),_CreateRectangle(root,canvas,eventInfo,ButtonState)]
     if(CretateMode == modeList[0]):
@@ -149,11 +163,12 @@ def _chnageMode(mode:str):
     global CretateMode
     CretateMode = mode
 
-def _cavasClear(canvas:tk.CTkCanvas):
+def _cavasClear(root:tk.CTk,canvas:tk.CTkCanvas):
     global DrawObjList
     for item in DrawObjList:
         canvas.delete(item)
     DrawObjList.clear()
+    canvas.create_rectangle(0,0,root.winfo_width(),root.winfo_height(),width=0,fill="gray")
     canvas.update()
 
 def _controlPanel(root:tk.CTk,canvas:tk.CTkCanvas):
@@ -170,8 +185,11 @@ def _controlPanel(root:tk.CTk,canvas:tk.CTkCanvas):
         colorButton.set("White")
         colorButton.pack(padx=10,pady=10)
         canvasClearButton = tk.CTkButton(optionWindow,text="Clear canvas")
-        canvasClearButton.bind("<1>",lambda event:_cavasClear(canvas))
+        canvasClearButton.bind("<1>",lambda event:_cavasClear(root,canvas))
         canvasClearButton.pack(padx=10,pady=10)
+        canvasSetColor = tk.CTkButton(optionWindow,text="Set new color")
+        canvasSetColor.bind("<1>",lambda event:_chooseColor("buttonClick"))
+        canvasSetColor.pack(padx=10,pady=10)
         optionWindow.bind("<1>",lambda event:[_changeColor(colorButton.get()),_chnageMode(modeButton.get())])
         optionWindow.mainloop()
 
