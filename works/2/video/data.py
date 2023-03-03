@@ -1,4 +1,5 @@
 import ffmpeg
+import numpy as np
 
 class Data:
     _ImgArray = []
