@@ -1,13 +1,15 @@
 from selenium import webdriver
 from selenium.webdriver.common.keys import Keys
 from selenium.webdriver.common.by import By
-from selenium.webdriver.remote.webelement import BaseWebElement
+from selenium.webdriver.chrome.options import Options
 from webdriver_manager.chrome import ChromeDriverManager
 import time
 import threading
 
 def _openWebSite(url = 'https://www.google.com/?hl=ja') -> webdriver.Chrome:
-    driver = webdriver.Chrome(ChromeDriverManager().install())
+    option = Options()
+    option.add_argument("--headless")
+    driver = webdriver.Chrome(ChromeDriverManager().install(),options=option)
     driver.get(url)
     return driver
 
@@ -41,6 +43,8 @@ def _countCharFromWebElems(WebElems) -> int:
     return count
 
 
+
+
 def countPTagCharFromURL(url:str):
 
     # url = "https://selenium-python.readthedocs.io/api.html?highlight=WebElement#selenium.webdriver.remote.webelement.WebElement.accessible_name"
@@ -50,5 +54,5 @@ def countPTagCharFromURL(url:str):
     # th2.start()
     return _countCharFromWebElems(WebElems)
 
-time.sleep(31000)
+
 # driver.quit()
