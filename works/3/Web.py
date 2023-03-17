@@ -30,6 +30,8 @@ def _outputToTextWebEelems(WebElems,title):
         for elem in WebElems:
             textfile.write(elem.text + "\n")
 
+# ---------------------------------------------------------------
+
 def _countCharFromStr(strings:str) -> int:
     count = 0
     for char in strings:
@@ -42,8 +44,16 @@ def _countCharFromWebElems(WebElems) -> int:
         count +=_countCharFromStr(elem.text)
     return count
 
+# ------------------------------------------
 
+def getAnyTagNameOfContent(driver,tagname:str):
+    WebElems = driver.find_elements(By.TAG_NAME,tagname)
+    return WebElems
 
+def gatAllTag(driver):
+    driver:webdriver.Chrome
+    WebElems = driver.find_elements(By.TAG_NAME,"*")
+    return WebElems
 
 def countPTagCharFromURL(url:str):
 
@@ -52,7 +62,7 @@ def countPTagCharFromURL(url:str):
     WebElems = _getPTagContent(driver)
     # th2 = threading.Thread(target=_outputToTextWebEelems,args=(WebElems,driver.title))
     # th2.start()
-    return _countCharFromWebElems(WebElems)
+    return _countCharFromWebElems(WebElems),driver.title
 
 
 # driver.quit()

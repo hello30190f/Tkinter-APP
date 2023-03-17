@@ -1,4 +1,5 @@
 import Web
+import Excel
 import ctypes
 try:
     ctypes.windll.shcore.SetProcessDpiAwareness(True)
@@ -29,10 +30,10 @@ class func:
 
     def _countCharOfPTag(self,frame,url,row,column):
         temp = []
-        count = Web.countPTagCharFromURL(url.get())
+        count,title = Web.countPTagCharFromURL(url.get())
         select = tk.CTkCheckBox(frame,onvalue="on",offvalue="off",text="")
         select.grid(row=row+self._historyIndex,column=column)
-        label = tk.CTkLabel(frame,text="Result")
+        label = tk.CTkLabel(frame,text=title)
         label.grid(row=row+self._historyIndex,column=column+1,padx=10,pady=10)
         result = tk.CTkLabel(frame,text=str(count))
         result.grid(row=row+self._historyIndex,column=column+2,padx=10,pady=10)
@@ -42,6 +43,8 @@ class func:
         self._content.append(temp)
         self._historyIndex += 1
 
+
+
     def countCharOfPTag(self,frame,url,row,column):
         thread = threading.Thread(target=self._countCharOfPTag,args=(frame,url,row,column))
         thread.start()
@@ -49,14 +52,14 @@ class func:
     def removeButton(self,root):
         delete = tk.CTkButton(root,text="remove selected result")
         delete.bind("<1>",lambda args:self._removeSelectedElem())
-        delete.pack()
+        delete.pack(padx=10,pady=10)
 
 
 funcTools = func()
-res = "500x500"
+# res = "500x500"
 window_name = "char counter"
 root = tk.CTk()
-root.geometry(res)
+# root.geometry(res)
 root.title(window_name)
 
 frame = tk.CTkFrame(root)
