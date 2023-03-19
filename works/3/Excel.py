@@ -10,4 +10,5 @@ def writeData(filename:str,datas):
         ws.append(data)
     wb.save(filename+"xlsx")
 
-writeData("hello")
+if __name__ == "__main__":
+    writeData("hello")
