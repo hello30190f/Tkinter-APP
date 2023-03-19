@@ -8,8 +8,13 @@ class data:
         self.numberOfChar = []
         self.widgets = []
 
-    def getInitCsvColumnNames(self):
-        return "Title,URL,NumberOfChar,"
+    def IsThereData(self):
+        if (self.url.__len__() == 0 and self.title.__len__() == 0 and self.numberOfChar.__len__() == 0):
+            # print("No data...")
+            # messagebox.askquestion("Data",message="No data...")
+            return False
+        # print("Here")
+        return True
 
     def getData(self) -> list:
         dataTemp = []

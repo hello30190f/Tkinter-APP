@@ -13,6 +13,9 @@ def writeData(filename:str,datas):
     wb.save(filename+".xlsx")
 
 def saveData(commonData:data):
+    if(commonData.IsThereData() == False):
+        return False
+
     temp = commonData.getData()
     datalist = []
     # print(commonData.getArrayAmount(),commonData.getArrayLenth())

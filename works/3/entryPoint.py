@@ -68,6 +68,11 @@ class func:
         save.pack(padx=10,pady=10)
         
 
+    # def DataExistenceCheck(self,root,commonData:data):
+    #     check = tk.CTkButton(root,text="check existence of data")
+    #     check.bind("<1>",lambda args:commonData.IsThereData())
+    #     check.pack(padx=10,pady=10)
+
 
 
 
