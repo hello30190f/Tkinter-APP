@@ -1,0 +1,3 @@
+class data:
+    _content = []
+    

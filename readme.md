@@ -6,7 +6,9 @@ I try to make tkinter apps for practice.
 - text writer
 - video editer (There is no function. I designed UI. I will make function later....)
 - paint (in test folder) 
+- Char counter
 
 
 # Recent event
-- I cleaned this repo. I will work with this proejct when i have free time.
+- I add char counter of a web page. (Only count p tag content.)
+- I still have no idea to treat video. Opencv,ffmpeg and moviepy are supposed to be useful for this purpose.
