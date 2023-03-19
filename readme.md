@@ -9,17 +9,17 @@ I try to make tkinter apps for practice.
 - Char counter
 
 # Folder structure
-├─junk
-├─test
-│  ├─1
-│  ├─2
-│  ├─3
-│  ├─4
-│  └─6
-└─works
-    ├─1
-    ├─2
-    └─3 (Char counter)
+├─junk  
+├─test  
+│  ├─1  
+│  ├─2  
+│  ├─3  
+│  ├─4  
+│  └─6  
+└─works  
+    ├─1  
+    ├─2  
+    └─3 (Char counter)  
 
 
 # Recent event
