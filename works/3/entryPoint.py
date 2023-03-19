@@ -35,6 +35,7 @@ class func:
         temp = []
         count,title = Web.countPTagCharFromURL(url.get())
         commonData.title.append(title)
+        commonData.numberOfChar.append(count)
         commonData.url.append(url.get())
         select = tk.CTkCheckBox(frame,onvalue="on",offvalue="off",text="",checkbox_width=20,checkbox_height=20,width=20)
         select.grid(row=row+self._historyIndex,column=column)
@@ -61,6 +62,11 @@ class func:
         delete.bind("<1>",lambda args:self._removeSelectedElem(commonData))
         delete.pack(padx=10,pady=10)
 
+    def saveButton(self,root,commonData:data):
+        save = tk.CTkButton(root,text="Save data")
+        save.bind("<1>",lambda args:Excel.saveData(commonData))
+        save.pack(padx=10,pady=10)
+        
 
 
 
@@ -92,6 +98,7 @@ if __name__ == "__main__":
     dataPrint.pack(padx=10,pady=10)
     
     funcTools.removeButton(root,commonData)
+    funcTools.saveButton(root,commonData)
     
 
 

@@ -15,10 +15,10 @@ def findfile(filename:str,extention:str,path="./") -> bool:
 
 
 
-def openFile(filename:str,extension:str,path="./"):
-    if findfile(filename=filename,extention=extension,path=path):
+# def openFile(filename:str,extension:str,path="./"):
+#     if findfile(filename=filename,extention=extension,path=path):
         
-        pass
+#         pass
 
 
 
