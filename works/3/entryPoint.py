@@ -35,7 +35,8 @@ class func:
         temp = []
         count,title = Web.countPTagCharFromURL(url.get())
         commonData.title.append(title)
-        select = tk.CTkCheckBox(frame,onvalue="on",offvalue="off",text="")
+        commonData.url.append(url.get())
+        select = tk.CTkCheckBox(frame,onvalue="on",offvalue="off",text="",checkbox_width=20,checkbox_height=20,width=20)
         select.grid(row=row+self._historyIndex,column=column)
         label = tk.CTkLabel(frame,text=title)
         label.grid(row=row+self._historyIndex,column=column+1,padx=10,pady=10)
@@ -51,7 +52,7 @@ class func:
 
 
     def countCharOfPTag(self,frame,url,row,column,commonData:data):
-        commonData.url.append(url)
+        # commonData.url.append(url.get())
         thread = threading.Thread(target=self._countCharOfPTag,args=(frame,url,row,column,commonData))
         thread.start()
 
@@ -83,11 +84,11 @@ if __name__ == "__main__":
     UrlEnterForm.grid(row=1,column=0,pady=10,padx=10)
     CountBegin = tk.CTkButton(frame,text="begin to count.")
     CountBegin.bind("<1>",lambda args:funcTools.countCharOfPTag(frame,UrlEnterForm,2,0,commonData))
-    CountBegin.grid(row=1,column=1,padx=10,pady=10)
+    CountBegin.grid(row=1,column=1,padx=10,pady=10,sticky=tk.W)
     frame.pack(padx=10,pady=10)
 
     dataPrint = tk.CTkButton(root,text="Print data")
-    dataPrint.bind("<1>",lambda args:commonData.printData())
+    dataPrint.bind("<1>",lambda args:commonData.printDataWithTkinter())
     dataPrint.pack(padx=10,pady=10)
     
     funcTools.removeButton(root,commonData)

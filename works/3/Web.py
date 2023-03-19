@@ -6,6 +6,9 @@ from webdriver_manager.chrome import ChromeDriverManager
 import time
 import threading
 
+def _IsChromeDriverWorking():
+    driver = webdriver.Chrome(ChromeDriverManager().install())
+
 def _openWebSite(url = 'https://www.google.com/?hl=ja') -> webdriver.Chrome:
     option = Options()
     option.add_argument("--headless")
@@ -66,3 +69,6 @@ def countPTagCharFromURL(url:str):
 
 
 # driver.quit()
+if __name__ == "__main__":
+    _IsChromeDriverWorking()
+    pass

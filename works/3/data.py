@@ -15,10 +15,11 @@ class data:
     def printDataWithTkinter(self):
         text = ""
         for lenth in range(len(self.url)):
-            text += "URL: " + self.url[lenth]
-            text += " Title: " + self.title[lenth]
-            text += " Widget: " + str(self.title[lenth])
-            text += "\n"
+            text += "-------------------------\n"
+            text += "URL: \n" + self.url[lenth]
+            text += "\nTitle: \n" + self.title[lenth]
+            text += "\nWidget: \n" + str(self.widgets[lenth])
+            text += "\n\n"
         messagebox.askquestion("data",text)
 
     def removeElem(self,index:int):
