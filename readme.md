@@ -11,4 +11,4 @@ I try to make tkinter apps for practice.
 
 # Recent event
 - I add char counter of a web page. (Only count p tag content.)
-- I still no idea to treat video. Opencv,ffmpeg and moviepy supposed to be useful for this purpose.
+- I still have no idea to treat video. Opencv,ffmpeg and moviepy are supposed to be useful for this purpose.
