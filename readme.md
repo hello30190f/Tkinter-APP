@@ -8,6 +8,19 @@ I try to make tkinter apps for practice.
 - paint (in test folder) 
 - Char counter
 
+# Folder structure
+├─junk
+├─test
+│  ├─1
+│  ├─2
+│  ├─3
+│  ├─4
+│  └─6
+└─works
+    ├─1
+    ├─2
+    └─3 (Char counter)
+
 
 # Recent event
 - I add char counter of a web page. (Only count p tag content.)
