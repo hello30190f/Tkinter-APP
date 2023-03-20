@@ -60,13 +60,17 @@ class func:
     def removeButton(self,root,commonData:data):
         delete = tk.CTkButton(root,text="remove selected result")
         delete.bind("<1>",lambda args:self._removeSelectedElem(commonData))
-        delete.pack(padx=10,pady=10)
+        delete.pack(padx=10,pady=10,side=tk.LEFT)
 
     def saveButton(self,root,commonData:data):
         save = tk.CTkButton(root,text="Save data")
         save.bind("<1>",lambda args:Excel.saveData(commonData))
-        save.pack(padx=10,pady=10)
+        save.pack(padx=10,pady=10,side=tk.LEFT)
         
+    def printData(self,root):
+        dataPrint = tk.CTkButton(root,text="Print data")
+        dataPrint.bind("<1>",lambda args:commonData.printDataWithTkinter())
+        dataPrint.pack(padx=10,pady=10)
 
     # def DataExistenceCheck(self,root,commonData:data):
     #     check = tk.CTkButton(root,text="check existence of data")
@@ -98,12 +102,12 @@ if __name__ == "__main__":
     CountBegin.grid(row=1,column=1,padx=10,pady=10,sticky=tk.W)
     frame.pack(padx=10,pady=10)
 
-    dataPrint = tk.CTkButton(root,text="Print data")
-    dataPrint.bind("<1>",lambda args:commonData.printDataWithTkinter())
-    dataPrint.pack(padx=10,pady=10)
-    
-    funcTools.removeButton(root,commonData)
-    funcTools.saveButton(root,commonData)
+
+    frame2 = tk.CTkFrame(root)
+    funcTools.printData(frame2)
+    funcTools.removeButton(frame2,commonData)
+    funcTools.saveButton(frame2,commonData)
+    frame2.pack(pady=(0,10))
     
 
 
