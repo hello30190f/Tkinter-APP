@@ -35,3 +35,7 @@ if __name__ == "__main__":
 
     filepath = filedialog.askdirectory()
     print(filepath)
+    print(len(filepath))
+    print(type(filepath))
+    if(0 == len(filepath)):
+        print("yes")

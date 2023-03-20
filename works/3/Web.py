@@ -32,7 +32,10 @@ def _PrintCharacterFromWebElem(WebElems):
 def _outputToTextWebEelems(WebElems,title):
     filename = "p tag content.txt"
     path = filedialog.askdirectory()
-    path += "/"
+    if(0 == len(path)):
+        pass
+    else:
+        path += "/"
     filenameAndPath = path + filename
     with open(filenameAndPath,"w+",encoding="UTF-8") as textfile:
         for elem in WebElems:

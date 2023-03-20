@@ -1,16 +1,22 @@
 from openpyxl import Workbook
 from tkinter import dialog
 from data import data
+from tkinter import filedialog
 
 
 # data should be like [[1,2,3],[1,2,3]] first index is row, second index is column.
 def writeData(filename:str,datas):
+    path = filedialog.askdirectory()
+    if(0 == len(path)):
+        pass
+    else:
+        path += "/"
     wb = Workbook()
     ws = wb.active
     for data in datas:
         ws.append(data)
         # print(data)
-    wb.save(filename+".xlsx")
+    wb.save(path + filename+".xlsx")
 
 def saveData(commonData:data):
     if(commonData.IsThereData() == False):
@@ -30,4 +36,4 @@ def saveData(commonData:data):
 
 
 if __name__ == "__main__":
-    writeData("hello")
+    writeData("hello",[[1,2,3,"hello"]])
