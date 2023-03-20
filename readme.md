@@ -17,9 +17,9 @@ I try to make tkinter apps for practice.
 │  ├─4  
 │  └─6  
 └─works  
-    ├─1  
-    ├─2  
-    └─3 (Char counter)  
+│   ├─1  
+│   ├─2  
+│   └─3 (Char counter)  
 
 
 # Recent event
