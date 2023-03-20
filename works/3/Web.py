@@ -5,6 +5,8 @@ from selenium.webdriver.chrome.options import Options
 from webdriver_manager.chrome import ChromeDriverManager
 import time
 import threading
+from tkinter import filedialog
+
 
 def _IsChromeDriverWorking():
     driver = webdriver.Chrome(ChromeDriverManager().install())
@@ -28,8 +30,11 @@ def _PrintCharacterFromWebElem(WebElems):
         print(elem.text)
 
 def _outputToTextWebEelems(WebElems,title):
-    filename = title + " p tag content.txt"
-    with open(filename,"w+",encoding="UTF-8") as textfile:
+    filename = "p tag content.txt"
+    path = filedialog.askdirectory()
+    path += "/"
+    filenameAndPath = path + filename
+    with open(filenameAndPath,"w+",encoding="UTF-8") as textfile:
         for elem in WebElems:
             textfile.write(elem.text + "\n")
 
@@ -53,10 +58,11 @@ def getAnyTagNameOfContent(driver,tagname:str):
     WebElems = driver.find_elements(By.TAG_NAME,tagname)
     return WebElems
 
-def gatAllTag(driver):
+def getAllTag(driver):
     driver:webdriver.Chrome
     WebElems = driver.find_elements(By.TAG_NAME,"*")
     return WebElems
+
 
 def countPTagCharFromURL(url:str):
 
@@ -70,5 +76,13 @@ def countPTagCharFromURL(url:str):
 
 # driver.quit()
 if __name__ == "__main__":
-    _IsChromeDriverWorking()
-    pass
+    # _IsChromeDriverWorking()
+
+    # This is working!
+    def asterriskTagNameTest():
+        driver = _openWebSite("https://ejje.weblio.jp/content/modify")
+        elems = getAllTag(driver)
+        # _PrintCharacterFromWebElem(elems)
+        _outputToTextWebEelems(elems,driver.title)
+
+    asterriskTagNameTest()
