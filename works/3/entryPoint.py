@@ -67,7 +67,7 @@ class func:
         save.bind("<1>",lambda args:Excel.saveData(commonData))
         save.pack(padx=10,pady=10,side=tk.LEFT)
         
-    def printData(self,root):
+    def printData(self,root,commonData:data):
         dataPrint = tk.CTkButton(root,text="Print data")
         dataPrint.bind("<1>",lambda args:commonData.printDataWithTkinter())
         dataPrint.pack(padx=10,pady=10)
@@ -104,7 +104,7 @@ if __name__ == "__main__":
 
 
     frame2 = tk.CTkFrame(root)
-    funcTools.printData(frame2)
+    funcTools.printData(frame2,commonData)
     funcTools.removeButton(frame2,commonData)
     funcTools.saveButton(frame2,commonData)
     frame2.pack(pady=(0,10))
