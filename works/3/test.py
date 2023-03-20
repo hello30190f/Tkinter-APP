@@ -27,9 +27,6 @@ def test1():
     printbutton.bind("<1>",lambda args:ifsentence(select.get()))
     printbutton.pack()
 
-
-
-
     root.mainloop()
 
 
