@@ -20,7 +20,7 @@ I try to make tkinter apps for practice.
 │   ├─1  
 │   ├─2  
 │   └─3 (Char counter)  
-
+│   └─4 (escape adder for path)  
 
 # Recent event
 - I add char counter of a web page. (Only count p tag content.)
