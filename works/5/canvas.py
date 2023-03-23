@@ -1,5 +1,6 @@
 import customtkinter as tk
 import time
+import math
 
 
 class physics:
@@ -10,14 +11,41 @@ class physics:
         self.massA = massA # Kg
         self.lenth = lenth # m
         self.constantK = K # N/m
-        self.time = 0 
+        self.Acceleration = 0 # m/s^2
+        self.FirstFlag = True
+        self.time = 0
+        self.PrevTime = 0
+        self.x = 0
+        self.y = 0
     
     def _deltaTime(self):
         pass
 
-    def _clacMovement(self):
-        
-        
+    def _clacMovement(self,x,y):
+        if(self.FirstFlag == True):
+            self.FirstFlag = False
+            self.PrevTime = time.time()
+            self.x = x
+            self.y = y
+
+        else:
+            deltaTime = time.time() - self.PrevTime() # t
+            deltaPosition = math.sqrt(abs(self.x -x)^2 + abs(self.y - y)^2) # x
+            # ma = # kx
+            # a = # kx / m
+
+            self.x = x
+            self.y = y
+
+
+            pass
+    
+        pass
+
+    def whenReleased(self):
+        self.FirstFlag = True
+        self.Acceleration = 0
+
         pass
 
 
