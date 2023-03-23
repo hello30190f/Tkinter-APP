@@ -14,7 +14,18 @@ class timer:
         self.delta = time.time() - self.prevTime
         self.prevTime = time.time()
 
+class repeatPart:
 
+    def __init__(self,canvas:tk.CTkCanvas,Interval = 16) -> None:
+        import pyhsics
+        from pyhsics import Vector2
+        self.Interval = Interval
+        self.canvas = canvas
+
+        pass
+
+    def UpdateMe(self):
+        pass
 
 
 class boxAndPhysics:
@@ -37,10 +48,11 @@ class boxAndPhysics:
         self.size = 50
         self.halfSize = int(self.size/2)
         self.PrevCanvas = None
+        self.repeatPart = repeatPart(self.canvas,self.TimeRepeat)
 
     def _repeat(self,root):
         root.after(16,self._repeat(root))
-        pass
+        self.repeatPart.UpdateMe()
 
     def _canvasHandlerMousePressed(self,event):
         self._drawBox(event.x,event.y)
