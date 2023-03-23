@@ -15,9 +15,9 @@ class obj:
 
     def __init__(self,canvas:tk.CTkCanvas,canvasId,mass = 1,x = 0, y = 0) -> None:
         self.mass = 1
-        self.position = Vector2(x,y)
         self.canvasId = canvasId
         self.canvas = canvas
+        self.position = self.getMiddlePosition()
 
     def getMiddlePosition(self) -> Vector2:
         positionEdges = self.canvas.bbox(self.canvasId)
@@ -28,8 +28,15 @@ class obj:
         middle = Vector2(Xmiddle,Ymiddle)
         return middle
 
+    def updatePosition(self):
+        self.position = self.getMiddlePosition()
+
     def UpdateCanvasId(self,CanvasId):
         self.canvas = CanvasId
+
+    def UpdateMe(self,canvasId):
+        self.updatePosition()
+        self.UpdateCanvasId(canvasId)
 
 class spring:
 
@@ -62,7 +69,7 @@ class physicsClac:
         temp = Vector2((a.x - b.x),(a.y - b.y))
 
 
-    def clacSpringForce(self,canvas:tk.CTkCanvas,Pa:obj,Pb:obj,springC:spring,Interval = 16):
+    def clacSpringForce(self,Pa:obj,Pb:obj,springC:spring,Interval = 16) -> list:
         ForceAx = springC.constant * (Pb.position.x - Pa.position.x)
         ForceAy = springC.constant * (Pb.position.y - Pa.position.y) # y axis inverted
 
@@ -71,8 +78,30 @@ class physicsClac:
 
         A = Vector2(ForceAx,ForceAy)
         B = Vector2(ForceBx,ForceBy)
+        result = [A,B]
 
-        return A,B
+        return result
+
+    def clacAcceraration(self,Pa:obj,Pb:obj,springC:spring,Interval = 16) -> list:
+        force = self.clacSpringForce(Pa,Pb,springC,Interval)
+        A = force[0] 
+        A:Vector2
+        B = force[1]
+        B:Vector2
+
+        A.x = A.x / Pa.mass
+        A.y = A.y / Pa.mass
+
+        B.x = B.x / Pb.mass
+        B.y = B.y / Pb.mass
+
+        result = [A,B]
+        return result
+
+
+
+# -----------------------------------------------------------------------
+
 
 
 
@@ -80,8 +109,6 @@ class physicsClac:
 
 
 # -----------------------------------------------------------------------
-
-
 
 def clacForce(canvas:tk.CTkCanvas,Pa:obj,Pb:obj,springC:spring,Interval = 16):
     ForceA = -springC.constant
