@@ -3,50 +3,18 @@ import time
 import math
 
 
-class physics:
+class timer:
     
+    def __init__(self):
+        self.time = time.time()
+        self.prevTime = 0
+        self.delta = 0
+
+    def UpdateMe(self):
+        self.delta = time.time() - self.prevTime
+        self.prevTime = time.time()
 
 
-    def __init__(self,massA = 10,lenth = 1,K = 2) -> None:
-        self.massA = massA # Kg
-        self.lenth = lenth # m
-        self.constantK = K # N/m
-        self.Acceleration = 0 # m/s^2
-        self.FirstFlag = True
-        self.time = 0
-        self.PrevTime = 0
-        self.x = 0
-        self.y = 0
-    
-    def _deltaTime(self):
-        pass
-
-    def _clacMovement(self,x,y):
-        if(self.FirstFlag == True):
-            self.FirstFlag = False
-            self.PrevTime = time.time()
-            self.x = x
-            self.y = y
-
-        else:
-            deltaTime = time.time() - self.PrevTime() # t
-            deltaPosition = math.sqrt(abs(self.x -x)^2 + abs(self.y - y)^2) # x
-            # ma = # kx
-            # a = # kx / m
-
-            self.x = x
-            self.y = y
-
-
-            pass
-    
-        pass
-
-    def whenReleased(self):
-        self.FirstFlag = True
-        self.Acceleration = 0
-
-        pass
 
 
 class boxAndPhysics:
@@ -55,17 +23,24 @@ class boxAndPhysics:
         canvas.configure(width=root.winfo_width(),height=root.winfo_height())
 
     def __init__(self,root:tk.CTk):
+        # timeClac = timer()
+        self.TimeRepeat = 16 # about 60 fps
         self.canvas = tk.CTkCanvas(root,width=root.winfo_width(),height=root.winfo_height(),bg="gray")
         self.canvas.pack(padx=10,pady=10)
         self.canvas.bind("<1>",lambda event:self._canvasHandlerMousePressed(event))
         self.canvas.bind("<B1-Motion>",lambda event:self._canvasHandlerMouseMoving(event))
         self.canvas.bind("<ButtonRelease-1>",lambda event:self._canvasHandlerMouseReleased(event))
         root.bind("<Configure>",lambda event:self._resizeEnevtHandler(root,self.canvas))
+        root.after(self.TimeRepeat,self._repeat(root))
         self.x = 10
         self.y = 10
         self.size = 50
         self.halfSize = int(self.size/2)
         self.PrevCanvas = None
+
+    def _repeat(self,root):
+        root.after(16,self._repeat(root))
+        pass
 
     def _canvasHandlerMousePressed(self,event):
         self._drawBox(event.x,event.y)
