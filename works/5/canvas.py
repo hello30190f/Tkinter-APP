@@ -1,4 +1,24 @@
 import customtkinter as tk
+import time
+
+
+class physics:
+    
+
+
+    def __init__(self,massA = 10,lenth = 1,K = 2) -> None:
+        self.massA = massA # Kg
+        self.lenth = lenth # m
+        self.constantK = K # N/m
+        self.time = 0 
+    
+    def _deltaTime(self):
+        pass
+
+    def _clacMovement(self):
+        
+        
+        pass
 
 
 class boxAndPhysics:
@@ -15,13 +35,17 @@ class boxAndPhysics:
         root.bind("<Configure>",lambda event:self._resizeEnevtHandler(root,self.canvas))
         self.x = 10
         self.y = 10
-        self.size = 10
+        self.size = 50
+        self.halfSize = int(self.size/2)
+        self.PrevCanvas = None
 
     def _canvasHandlerMousePressed(self,event):
+        self._drawBox(event.x,event.y)
         # print("press")
         pass
 
     def _canvasHandlerMouseMoving(self,event):
+        self._drawBox(event.x,event.y)
         # print(event.x)
         pass
 
@@ -34,5 +58,14 @@ class boxAndPhysics:
 
     def _drawBox(self,x,y):
         self.canvas:tk.CTkCanvas
-        self.canvasId = self.canvas.create_rectangle(self.size(x,y))
+        if(self.PrevCanvas == None):
+            pass
+        else:
+            self.canvas.delete(self.PrevCanvas)
+        self.PrevCanvas = self.canvas.create_rectangle( x- self.halfSize,
+                                                        y- self.halfSize,
+                                                        x+ self.size -self.halfSize,
+                                                        y+ self.size -self.halfSize,
+                                                        fill="Red")
+
 
