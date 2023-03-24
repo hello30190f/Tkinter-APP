@@ -4,16 +4,16 @@ import customtkinter as tk
 class obj:
 
     def __init__(self,root:tk.CTk) -> None:
-        self.time = time.time()
+        self.time = 0
+        self.prevTime = time.time()
         self.root = root
         self.timer()
-        pass
 
     def timer(self):
         self.root:tk.CTk
-        self.time = time.time()
+        self.time += time.time() - self.prevTime
+        self.prevTime = time.time()
         self.root.after(16,lambda :self.timer())
-        pass
 
     
 
@@ -21,9 +21,9 @@ class obj:
 
 def test(root:tk.CTk):
     Ins = obj(root)
-    currentTime = tk.DoubleVar(root,Ins.time)
+    currentTime = tk.DoubleVar(root,int(Ins.time))
     def Update():
-        currentTime.set(Ins.time)
+        currentTime.set(int(Ins.time))
         root.after(16,lambda :Update())
     root.after(16,lambda :Update())
     showTime = tk.CTkLabel(root,textvariable=currentTime)
