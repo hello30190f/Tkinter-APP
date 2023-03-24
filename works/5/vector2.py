@@ -10,6 +10,23 @@ class Vector2:
         self.y = y
 
 
+def dotProduct(a:Vector2,b:Vector2) -> list:
+    """clac dot product
+
+    Args:
+        a (Vector2): Whatever you want to input
+        b (Vector2): Whatever you want to input
+
+    Returns:
+        list: return dot product and cos value by tuple. index 0 is innder product. index 1 is cos value.
+    """
+    dot = a.x * b.x + a.y * b.y
+    aLenth = VectorLenth(a)
+    bLenth = VectorLenth(b)
+    cos = dot / (aLenth*bLenth)
+    result = (dot,cos)
+    return result
+
 def VectorSum(a:Vector2,b:Vector2) -> Vector2:
     x = a.x + b.x
     y = a.y + b.y

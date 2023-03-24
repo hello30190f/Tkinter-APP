@@ -1,6 +1,6 @@
 import time
 import customtkinter as tk
-from vector import Vector2
+from vector2 import Vector2
 
 
 class obj:
