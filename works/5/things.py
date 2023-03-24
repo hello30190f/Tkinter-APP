@@ -10,13 +10,17 @@ class box(obj):
     def __init__(self, root: tk.CTk) -> None:
         super().__init__(root)
 
+    def defineCharacter(self):
+        self.position = Vector2()
+
 
 
 class springs(obj):
     def __init__(self, root: tk.CTk) -> None:
         super().__init__(root)
 
-
+    def defineCharacter(self):
+        self.position = Vector2()
 
 if __name__ == "__main__":
     import ctypes
