@@ -1,21 +1,25 @@
 import time
 import customtkinter as tk
+from vector import Vector2
+
 
 class obj:
-
-    def __init__(self,root:tk.CTk) -> None:
-        self.time = 0
-        self.prevTime = time.time()
-        self.root = root
-        self.timer()
-
     def timer(self):
         self.root:tk.CTk
         self.time += time.time() - self.prevTime
         self.prevTime = time.time()
         self.root.after(16,lambda :self.timer())
 
-    
+    def defineCharacter(self):
+        self.position = Vector2()
+
+    def __init__(self,root:tk.CTk) -> None:
+        self.time = 0
+        self.prevTime = time.time()
+        self.root = root
+        self.timer()
+        self.defineCharacter()
+
 
 
 
@@ -44,6 +48,6 @@ if __name__ == "__main__":
     root.title(window_name)
 
     test(root)
-    
+
 
     root.mainloop()
