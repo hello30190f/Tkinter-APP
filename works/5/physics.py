@@ -11,7 +11,7 @@ class obj:
         self.prevTime = time.time()
         self.root.after(16,lambda :self.timer())
 
-    def defineCharacter(self):
+    def defineCharacter(self,**kwargs):
         self.position = Vector2()
 
     # Call this function at the end of your code when you override this.

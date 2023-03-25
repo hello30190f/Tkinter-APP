@@ -1,0 +1,13 @@
+{
+    "A things" : {
+        "character" : {
+            "mass" : 10,
+            "mass unit" : "kg"
+        },
+        "shape" : {
+            "kind" : "rectangle",
+            "size" : 10,
+            "size unit" : "cm"
+        }
+    }
+}
