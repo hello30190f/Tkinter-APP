@@ -10,6 +10,11 @@ class Vector2:
         self.y = y
 
 
+
+# ---------------------------------------------------------
+# Code under this is caculation function for Vector2 class
+# ---------------------------------------------------------
+
 def dotProduct(a:Vector2,b:Vector2) -> list:
     """clac dot product
 

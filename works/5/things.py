@@ -58,7 +58,7 @@ class glue(obj):
 
         obj.Updater(self)
 
-class stick:
+class stick(obj):
     def __init__(self, root: tk.CTk) -> None:
         super().__init__(root)
 
