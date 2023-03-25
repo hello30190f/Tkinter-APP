@@ -4,6 +4,7 @@ from vector2 import Vector2
 
 
 class obj:
+    # self.time can be used to clac object physics
     def timer(self):
         self.root:tk.CTk
         self.time += time.time() - self.prevTime
@@ -19,6 +20,14 @@ class obj:
         self.root = root
         self.timer()
         self.defineCharacter()
+
+
+class property:
+    def __init__(self) -> None:
+        pass
+
+    def gravity(self):
+        self.gravity = 9.8 #m/s^2
 
 
 
