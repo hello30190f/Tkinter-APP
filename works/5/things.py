@@ -6,33 +6,71 @@ import math
 from physics import test
 
 
+# example --------------------------------------------
+
+class exampleObj(obj):
+    def __init__(self, root: tk.CTk) -> None:
+        super().__init__(root)
+
+    def defineCharacter(self):
+        obj.defineCharacter(self)
+
+    def drawObj(self):
+        obj.drawObj()
+
+    def Updater(self):
+
+        obj.Updater(self)
+
 class box(obj):
     def __init__(self, root: tk.CTk) -> None:
         super().__init__(root)
 
     def defineCharacter(self):
-        self.position = Vector2()
+        obj.defineCharacter(self)
+        self.size = 20
+        self.halfSize = self.size/2
+        self.upperLeft = Vector2(self.position.x-self.halfSize, self.position.y-self.halfSize)
+
+    def Updater(self):
+
+        obj.Updater(self)
 
 class springs(obj):
     def __init__(self, root: tk.CTk) -> None:
         super().__init__(root)
 
     def defineCharacter(self):
-        self.position = Vector2()
+        obj.defineCharacter(self)
+
+    def Updater(self):
+
+        obj.Updater(self)
 
 class glue(obj):
     def __init__(self, root: tk.CTk) -> None:
         super().__init__(root)
 
     def defineCharacter(self):
-        self.position = Vector2()
+        obj.defineCharacter(self)
+
+    def Updater(self):
+
+        obj.Updater(self)
 
 class stick:
     def __init__(self, root: tk.CTk) -> None:
         super().__init__(root)
 
     def defineCharacter(self):
-        self.position = Vector2()
+        obj.defineCharacter(self)
+
+    def Updater(self):
+
+        obj.Updater(self)
+
+
+# example --------------------------------------------
 
 
 

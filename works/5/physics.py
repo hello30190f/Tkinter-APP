@@ -14,6 +14,19 @@ class obj:
     def defineCharacter(self):
         self.position = Vector2()
 
+    # Call this function at the end of your code when you override this.
+    def Updater(self):
+        self.drawObj()
+        self.root.after(16,lambda :self.Updater())
+
+    def _resizeEnevtHandler(root:tk.CTk,canvas:tk.CTkCanvas):
+        canvas.configure(width=root.winfo_width(),height=root.winfo_height())
+
+    # This function should be called when Updater function is executed.
+    def drawObj(self):
+        self.canvas = tk.CTkCanvas(self.root,width=self.root.winfo_width(),height=self.root.winfo_height())
+        self.root.bind("<Configure>",lambda tets:self._resizeEnevtHandler(self.root,self.canvas))
+
     def __init__(self,root:tk.CTk) -> None:
         self.time = 0
         self.prevTime = time.time()
@@ -26,10 +39,11 @@ class property:
     def __init__(self) -> None:
         pass
 
-    def gravity(self):
+    def defineGravity(self):
         self.gravity = 9.8 #m/s^2
 
-
+    def defineDrag(self):
+        self.airDrag = 0
 
 
 def test(root:tk.CTk):
