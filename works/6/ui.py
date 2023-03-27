@@ -104,6 +104,11 @@ class setWait:
     def getData(self,data:waitTime):
         data.setTime(self.Entry.get())
 
+class orderDefineUI:
+    def __init__(self) -> None:
+        
+        pass
+
 
 class mainUI:
     def __init__(self,root:tk.CTk) -> None:

@@ -16,3 +16,10 @@ class order:
         self.NotRegistered = []
         self.Registered = []
         self.indexByTagName = []
+
+    def NotRegisteredTag(self,tagName):
+        self.NotRegistered.append(tagName)
+
+    def registerTag(self,tagName):
+        self.Registered.append(tagName)
+        self.indexByTagName.append(tagName)
