@@ -32,4 +32,14 @@ textBox.pack()
 
 
 
+frameTag = tk.CTkFrame(root)
+LabelTag = tk.CTkLabel(frameTag,text="Please Enter tag name.")
+LabelTag.pack()
+EntryTag = tk.CTkEntry(frameTag,width=400)
+EntryTag.pack()
+frameTag.pack()
+
+
+
+
 root.mainloop()

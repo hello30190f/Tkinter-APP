@@ -123,6 +123,12 @@ class mainUI:
         self.TimeUI.showForm(self.tabs.tab("sleep"))
         self.tabs.pack()
 
+    def UnSortedThingsList(self):
+        pass
+
+    def SortedThingsList(self):
+        pass
+
 if __name__ == "__main__":
     import ctypes
     try:

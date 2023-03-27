@@ -22,7 +22,7 @@ I try to make tkinter apps for practice.
 │   └─3 (Char counter)  
 │   └─4 (escape adder for path)  
 │   └─5 (Physics simulator?)  
-│   └─6 (selenium wapper?)  
+│   └─6 (selenium GUI tool?)  
 
 # Recent event
 - I add char counter of a web page. (Only count p tag content.)
