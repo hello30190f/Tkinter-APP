@@ -45,7 +45,7 @@ class setTarget:
             widget:tk.CTkLabel
             widget.grid_configure(padx=10,pady=10)
 
-    # TODO: setContent function ahs been changed with new idea so args need to be changed.
+    # TODO: setContent function has been changed with new idea so args need to be changed.
     def getData(self,data:baseDataStructure):
         data.setContent(self.select.get(),self.Entry.get())
 
@@ -104,7 +104,7 @@ class setWait:
             widget:tk.CTkLabel
             widget.grid_configure(padx=10,pady=10)
 
-    # TODO: setContent function ahs been changed with new idea so args need to be changed.
+    # TODO: setContent function has been changed with new idea so args need to be changed.
     def getData(self,data:baseDataStructure):
         data.setTime(self.Entry.get())
 

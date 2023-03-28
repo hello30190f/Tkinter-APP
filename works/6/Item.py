@@ -1,25 +1,34 @@
+class opration:
+    selectElem = "Select Elem"
+    setSleep = "set sleep"
+    setScript = "set script"
+
 class baseDataStructure:
     content = []
 
-    def setContent(self,opration:str,tag:str,**kwargs):
+    def setContent(self,opration:opration,tag:str,**kwargs):
         """setContent
 
         Args:
-            opration (str): _description_
-            tag (str): _description_
+            opration (opration): This args express what opration is. For example, select element.
+            tag (str): This don't express what kind of html tag is. In this case this tag is used to identifiy actions which are defined by user.
 
         Note:
-            To use this function you need to specify key and value at kwargs arg part.
-            Key="hello"
+            To use this function you need to specify key and value at kwargs part.
+            For example, Key="hello"
         """
+        attributes = []
         for key,value in kwargs.items():
             Acontent = []
-            attrribute = []
-            attrribute.append(key)
-            attrribute.append(value)
-            Acontent.append(opration)
-            Acontent.append(tag)
-            Acontent.append(attrribute)
+            Acontent .append(key)
+            Acontent .append(value)
+            attributes.append(Acontent)
+
+        # [[a opration]]
+        NextContent = [tag,opration,attributes]
+        self.content.append(NextContent)
+
+
 
 
 
