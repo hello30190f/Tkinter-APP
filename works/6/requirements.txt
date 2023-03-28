@@ -1,0 +1,5 @@
+# This file isn't tested. There are possibility to fail to install and work.
+selenium
+customtkinter
+ctypes
+webdriver_manager
