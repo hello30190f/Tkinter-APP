@@ -5,7 +5,7 @@ except:
     pass
 import customtkinter as tk
 from selenium.webdriver.common.by import By
-from Item import elemSelector,scriptData,waitTime
+from Item import baseDataStructure
 
 WIDTH = 400
 
@@ -45,7 +45,8 @@ class setTarget:
             widget:tk.CTkLabel
             widget.grid_configure(padx=10,pady=10)
 
-    def getData(self,data:elemSelector):
+    # TODO: setContent function ahs been changed with new idea so args need to be changed.
+    def getData(self,data:baseDataStructure):
         data.setContent(self.select.get(),self.Entry.get())
 
 
@@ -73,8 +74,10 @@ class setScript:
             widget:tk.CTkLabel
             widget.grid_configure(padx=10,pady=10)
 
-    def getData(self,data:scriptData):
-        data.setScript(self.textBox.get(1.0,tk.END))
+    # TODO: setContent function has been changed with new idea so args need to be changed.
+    def getData(self,data:baseDataStructure):
+        # data.setScript(self.textBox.get(1.0,tk.END))
+        pass
 
 
 class setWait:
@@ -101,7 +104,8 @@ class setWait:
             widget:tk.CTkLabel
             widget.grid_configure(padx=10,pady=10)
 
-    def getData(self,data:waitTime):
+    # TODO: setContent function ahs been changed with new idea so args need to be changed.
+    def getData(self,data:baseDataStructure):
         data.setTime(self.Entry.get())
 
 class orderDefineUI:
@@ -141,14 +145,9 @@ if __name__ == "__main__":
     except:
         pass
     import customtkinter as tk
-    # res = "500x500"
     window_name = "UI test window"
     root = tk.CTk()
-    # root.geometry(res)
     root.title(window_name)
-    # ins = setTarget(root)
-    # ins2 = setScript(root)
-    # ins3 = setWait(root)
     ins = mainUI(root)
 
 
