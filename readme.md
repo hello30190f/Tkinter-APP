@@ -18,7 +18,7 @@ I try to make tkinter apps for practice.
 │  └─6  
 └─works  
 │   ├─1  
-│   ├─2 (Video editor) still not working due to lacking of code. 
+│   ├─2 (Video editor) still not working due to lacking of code.   
 │   └─3 (Char counter)  
 │   └─4 (escape adder for path)  
 │   └─5 (Physics simulator?)  
