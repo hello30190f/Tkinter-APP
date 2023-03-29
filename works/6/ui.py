@@ -5,9 +5,19 @@ except:
     pass
 import customtkinter as tk
 from selenium.webdriver.common.by import By
-from Item import baseDataStructure
+from Item import baseDataStructure,opration
 
 WIDTH = 400
+def addOprationAndTagUI(frame:tk.CTkFrame,row:int) -> list:
+    content = []
+    explain = tk.CTkLabel(frame,text="Select opration and enter tag name which you want")
+    explain.grid(row=row,column=0)
+    oprationMenu = tk.CTkOptionMenu(frame,values=[opration.selectElem,opration.setScript,opration.setSleep])
+    oprationMenu.grid(row=row+1,column=0)
+    TagEntry = tk.CTkEntry(frame,width=300)
+    TagEntry.grid(row=row+1,column=1)
+    content.extend(explain,oprationMenu,TagEntry)
+    return content
 
 class setTarget:
     def __init__(self,root:tk.CTk) -> None:
