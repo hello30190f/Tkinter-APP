@@ -15,8 +15,11 @@ def addOprationAndTagUI(frame:tk.CTkFrame,row:int) -> list:
     oprationMenu = tk.CTkOptionMenu(frame,values=[opration.selectElem,opration.setScript,opration.setSleep])
     oprationMenu.grid(row=row+1,column=0)
     TagEntry = tk.CTkEntry(frame,width=300)
-    TagEntry.grid(row=row+1,column=1)
-    content.extend(explain,oprationMenu,TagEntry)
+    TagEntry.grid(row=row+2,column=0)
+    content.extend([explain,oprationMenu,TagEntry])
+    for widget in content:
+        widget:tk.CTkLabel
+        widget.grid_configure(padx=10,pady=10)
     return content
 
 class setTarget:
@@ -47,13 +50,11 @@ class setTarget:
         self.button = tk.CTkButton(self.frame,text="Register")
         self.button.grid(row=3,column=0)
         self.frame.pack()
-        content.append(self.label)
-        content.append(self.Entry)
-        content.append(self.button)
-        content.append(self.select)
+        content.extend([self.label,self.Entry,self.button,self.select])
         for widget in content:
             widget:tk.CTkLabel
             widget.grid_configure(padx=10,pady=10)
+        content + addOprationAndTagUI(self.frame,4)
 
     # TODO: setContent function has been changed with new idea so args need to be changed.
     def getData(self,data:baseDataStructure):
@@ -77,12 +78,11 @@ class setScript:
         self.button = tk.CTkButton(self.frame,text="Register")
         self.button.grid(row=2,column=0)
         self.frame.pack()
-        content.append(self.label)
-        content.append(self.button)
-        content.append(self.textBox)
+        content.extend([self.label,self.button,self.textBox])
         for widget in content:
             widget:tk.CTkLabel
             widget.grid_configure(padx=10,pady=10)
+        content + addOprationAndTagUI(self.frame,3)
 
     # TODO: setContent function has been changed with new idea so args need to be changed.
     def getData(self,data:baseDataStructure):
@@ -107,12 +107,11 @@ class setWait:
         self.button = tk.CTkButton(self.frame,text="Register")
         self.button.grid(row=2,column=0)
         self.frame.pack()
-        content.append(self.label)
-        content.append(self.button)
-        content.append(self.Entry)
+        content.extend([self.label,self.button,self.Entry])
         for widget in content:
             widget:tk.CTkLabel
             widget.grid_configure(padx=10,pady=10)
+        content + addOprationAndTagUI(self.frame,3)
 
     # TODO: setContent function has been changed with new idea so args need to be changed.
     def getData(self,data:baseDataStructure):
